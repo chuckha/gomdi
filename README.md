@@ -13,21 +13,35 @@ when it makes logical sense to do so.
 ## Model interface
 
 ```go
-// An interface that knows how to talk to the Datastore interface
 type Model interface {
 	// A getter for the Model's Id.
 	Id() string
-	// Datastore will set the Id()
+	// Datastore will set the Id().
 	SetId(string)
 	// Return the name of the collection, sometimes known as a table name.
 	Table() string
 	// A method to convert an interface to this model type.
 	Convert(interface{})
-	// Return nil if the model passes all validation
+	// Return nil if the model passes all validation.
 	Validate() error
 	// Define what it means to be equal.
 	// This usually starts with a type conversion.
 	Equal(interface{}) bool
+}
+```
+
+## Datastore interface
+
+```go
+type Datastore interface {
+        // Save the model and set the Id.
+        Save(Model) error
+        // Return the model with the given Id.
+        Get(string, Model) (interface{}, error)
+        // Get a collection of models where the field name matches the value passed in.
+        Filter(string, interface{}, Model) ([]interface{}, error)
+        // Test for model existence in the datastore.
+        Exists(Model) bool
 }
 ```
 

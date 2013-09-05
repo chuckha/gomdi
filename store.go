@@ -23,7 +23,7 @@ type Model interface {
 	Equal(interface{}) bool
 }
 
-// This datstore knows how to do stuff with structs that implement Model
+// This datstore knows how to do stuff with types that implement Model
 type Datastore interface {
 	// Save the model and set the Id
 	Save(Model) error
