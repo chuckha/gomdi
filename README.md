@@ -1,4 +1,4 @@
-# Go Model and Datastore interfaces
+# Go Model and Datastore Interfaces
 
 This package provides a Model and Datastore interface.
 It's the plug between the two ends.
